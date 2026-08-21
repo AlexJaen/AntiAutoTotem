@@ -24,9 +24,6 @@ public class AntiAutoTotem extends JavaPlugin implements Listener
     private boolean notifyPlayer;
     private String notifyMessage;
 
-    // UUID del jugador -> tick del servidor (Bukkit.getCurrentTick()-like,
-    // usamos System.currentTimeMillis() para no depender de un contador
-    // de ticks propio) en el que expira el bloqueo.
     private final Map<UUID, Long> lockedUntilMillis = new HashMap<>();
 
     @Override
@@ -82,8 +79,6 @@ public class AntiAutoTotem extends JavaPlugin implements Listener
 
         Inventory clicked = e.getClickedInventory();
 
-        // Solo nos importa el slot 40 (offhand) DENTRO del inventario del
-        // propio jugador -- ignoramos clicks en cofres/otros contenedores.
         if(clicked == null
         || clicked.getType() != InventoryType.PLAYER
         || e.getSlot() != OFFHAND_SLOT)
