@@ -108,9 +108,6 @@ public class AntiAutoTotem extends JavaPlugin implements Listener
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onSwapHands(PlayerSwapHandItemsEvent e)
     {
-        // La tecla F (swap main/offhand) es el metodo mas comun de
-        // "autototem" -- macro que pulsa F en cuanto detecta que el
-        // totem se ha gastado, para recolocar otro al instante.
         this.blockIfLocked(e.getPlayer(), e::setCancelled);
     }
 
