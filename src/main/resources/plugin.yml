@@ -2,7 +2,7 @@ name: AntiAutoTotem
 version: 1.0.0
 main: com.df15.antiautototem.AntiAutoTotem
 api-version: '1.21'
-author: df15
+author: Lorealex
 description: >
   Mitigacion (no deteccion) contra macros de "autototem". GrimAC y Vulcan
   no tienen ningun check dedicado para esto -- el re-equipado rapido de
