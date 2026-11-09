@@ -1,20 +1,15 @@
-# AntiAutoTotem -- ver plugin.yml para el porque de este plugin.
+# AntiAutoTotem
 #
-# Cuando un jugador consume un totem (EntityResurrectEvent), se le
-# bloquea temporalmente meter CUALQUIER item en el slot de la mano
-# secundaria (offhand). Un jugador legitimo que reacciona a mano tarda
-# de sobra mas que esto en volver a coger un totem del inventario y
-# equiparlo; un macro de autototem, que normalmente rellena el offhand
-# en el mismo tick, se queda sin efecto durante esta ventana.
+# When a player consumes a Totem of Undying (EntityResurrectEvent), they are
+# temporarily blocked from putting ANY item in the off-hand slot. A legitimate
+# player takes far longer than this to grab another totem and equip it; an
+# auto-totem macro, which usually refills the off-hand in the same tick, loses
+# its advantage during this window.
 #
-# cooldown-ticks: duracion del bloqueo en ticks de Minecraft (20 ticks =
-# 1 segundo). Por defecto 6 ticks (~0.3s) -- deliberadamente corto para
-# que un jugador normal nunca lo note, pero suficiente para anular la
-# ventaja de instantaneidad de un macro.
+# cooldown-ticks: lock duration in game ticks (20 ticks = 1 second).
+# Default 6 ticks (~0.3 s): short enough that a normal player never notices it.
 cooldown-ticks: 6
 
-# Si es true, se avisa al jugador en la action bar mientras el
-# bloqueo esta activo (solo si de verdad intenta meter algo en el
-# offhand durante la ventana -- no se le avisa si no interactua).
+# Tell the player (chat) when they try to equip something during the lock.
 notify-player: true
-notify-message: "&7Espera un instante antes de re-equipar la mano secundaria..."
+notify-message: "&7Wait a moment before re-equipping your off-hand..."

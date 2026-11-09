@@ -4,20 +4,14 @@ main: com.df15.antiautototem.AntiAutoTotem
 api-version: '1.21'
 author: Lorealex
 description: >
-  Mitigacion (no deteccion) contra macros de "autototem". GrimAC y Vulcan
-  no tienen ningun check dedicado para esto -- el re-equipado rapido de
-  totems es indistinguible de un jugador humano rapido para un
-  anticheat de servidor. En vez de intentar detectarlo, este plugin
-  fuerza un breve bloqueo del slot de la mano secundaria justo despues
-  de consumir un totem, para que un macro que rellena el offhand al
-  instante no tenga ningun efecto extra sobre lo que ya podria hacer un
-  jugador legitimo con buenos reflejos.
+  Mitigates (does not detect) "auto-totem" macros by briefly locking the
+  off-hand slot right after a Totem of Undying is consumed.
 commands:
   antiautototem:
-    description: Recarga la configuracion de AntiAutoTotem
+    description: Reload the AntiAutoTotem configuration
     usage: /antiautototem reload
     permission: antiautototem.admin
 permissions:
   antiautototem.admin:
-    description: Permite recargar la configuracion de AntiAutoTotem
+    description: Allows reloading the AntiAutoTotem configuration
     default: op
