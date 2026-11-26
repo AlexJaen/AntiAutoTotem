@@ -40,7 +40,7 @@ public class AntiAutoTotem extends JavaPlugin implements Listener
             {
                 this.reloadConfig();
                 this.loadSettings();
-                sender.sendMessage(ChatColor.GREEN + "[AntiAutoTotem] Configuracion recargada.");
+                sender.sendMessage(ChatColor.GREEN + "[AntiAutoTotem] Configuration reloaded.");
                 return true;
             });
         }
@@ -51,7 +51,7 @@ public class AntiAutoTotem extends JavaPlugin implements Listener
         this.cooldownTicks = getConfig().getInt("cooldown-ticks", 6);
         this.notifyPlayer = getConfig().getBoolean("notify-player", true);
         this.notifyMessage = ChatColor.translateAlternateColorCodes('&',
-            getConfig().getString("notify-message", "&7Espera un instante antes de re-equipar la mano secundaria..."));
+            getConfig().getString("notify-message", "&7Wait a moment before re-equipping your off-hand..."));
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

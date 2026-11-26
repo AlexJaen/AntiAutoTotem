@@ -1,29 +1,82 @@
-# AntiAutoTotem
+<h1 align="center">🛡️ AntiAutoTotem</h1>
+<p align="center"><b>Neutralises "auto-totem" macros without ever flagging a legitimate player.</b></p>
 
-Plugin para Paper 1.21.x que **mitiga** (no detecta) los macros de "autototem". Los anticheats convencionales (GrimAC, Vulcan) no tienen ningún check dedicado para esto, ya que el re-equipado rápido de totems es indistinguible de un jugador humano con buenos reflejos.
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue">
+  <img alt="Paper" src="https://img.shields.io/badge/Paper-1.21.x%20%7C%2026.x-success">
+  <img alt="Java" src="https://img.shields.io/badge/Java-21%2B-orange">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-lightgrey">
+</p>
 
-En vez de intentar detectarlo, el plugin fuerza un breve bloqueo del slot de la mano secundaria justo después de consumir un totem, para que un macro que rellena el offhand al instante no tenga ningún efecto extra sobre lo que ya podría hacer un jugador legítimo.
+| | |
+|---|---|
+| **Version** | 1.0.0 |
+| **Platform** | Paper 1.21.x and 26.x (built against 1.21.11, Java 21) |
+| **Dependencies** | None |
+| **Command** | `/antiautototem reload` |
+| **Config** | 2 options, tiny footprint |
 
-## Comandos
+## What is it?
 
-| Comando | Descripción | Permiso |
-|---|---|---|
-| `/antiautototem reload` | Recarga la configuración | `antiautototem.admin` |
+"Auto-totem" hacks re-equip a Totem of Undying in the same tick the previous one pops. Anticheats like GrimAC or Vulcan have no dedicated check for it, because an instant re-equip is indistinguishable from a fast human… at the server level.
 
-## Instalación
+**AntiAutoTotem doesn't try to detect it — it mitigates it.** Right after a player consumes a totem, their off-hand slot is briefly locked (default **0.3 s / 6 ticks**). A human re-equips later than that, so nobody notices; a macro that refills the off-hand instantly loses its edge.
 
-Descarga el `.jar` desde [Releases](../../releases) (o compílalo tú mismo, ver abajo) y colócalo en la carpeta `plugins/` de tu servidor Paper 1.21.x.
+## How it works
 
-## Compilar desde el código fuente
+When a player's totem pops (`EntityResurrectEvent`), the plugin starts a short lock. During the lock these actions on the off-hand are cancelled:
 
-Requiere JDK 21 y Maven.
+- clicking the off-hand slot in the inventory,
+- dragging items onto the off-hand slot,
+- swapping hands with the **F** key.
 
+Once the lock expires everything works as usual. Players with a lock active get a subtle message (optional).
+
+## Features
+
+- ✅ **Zero false positives** — it never punishes or flags anyone.
+- ⚡ **Extremely light** — one map entry per player, no scheduler tasks.
+- 🔧 **Two settings** — lock duration and message.
+- 🔁 `/antiautototem reload` — no restart needed.
+- 🤝 Works alongside any anticheat.
+
+## Configuration
+
+`plugins/AntiAutoTotem/config.yml`:
+
+```yaml
+cooldown-ticks: 6     # lock duration in ticks (20 ticks = 1 s)
+notify-player: true   # tell the player when they try to equip during the lock
+notify-message: "&7Wait a moment before re-equipping your off-hand..."
 ```
-mvn package
+
+## Commands & permissions
+
+| Command | Description | Permission | Default |
+|---|---|---|---|
+| `/antiautototem reload` | Reload the configuration | `antiautototem.admin` | op |
+
+## Installation
+
+1. Download `antiautototem-<version>.jar` from [Releases](../../releases).
+2. Put it in `plugins/` and restart.
+
+## Build from source
+
+```bash
+git clone https://github.com/AlexJaen/AntiAutoTotem.git
+cd AntiAutoTotem
+mvn clean package
 ```
 
-El `.jar` resultante queda en `target/antiautototem-<version>.jar`.
+Requires JDK 21+ and Maven. The jar is written to `target/antiautototem-<version>.jar`.
 
-## Autor
+## License
 
-Lorealex
+MIT — see [LICENSE](LICENSE).
+
+---
+
+### 🇪🇸 Resumen
+
+Mitiga (no detecta) los macros de *auto-totem*: tras consumir un tótem, el slot de la mano secundaria se bloquea ~0,3 s. Un jugador humano no lo nota; un macro que rellena la mano al instante pierde su ventaja. Sin falsos positivos, sin dependencias. Configurable en `config.yml` (`cooldown-ticks`, `notify-player`, `notify-message`).

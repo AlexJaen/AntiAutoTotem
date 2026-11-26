@@ -6,7 +6,7 @@
 
     <groupId>com.df15</groupId>
     <artifactId>antiautototem</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -24,10 +24,7 @@
     </repositories>
 
     <dependencies>
-        <!-- Paper API 1.21.11: misma version exacta que jail/lobby (ver
-             server/paper-1.21.11-132.jar), mismo patron que
-             RareItemHunter/ServerRules/AreaPickaxes/GlobalBlockStats/
-             ScheduledCommands. No hace falta ninguna otra dependencia. -->
+        <!-- Paper API 1.21.11 (Java 21). Plugin also runs on Paper 26.x. -->
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
